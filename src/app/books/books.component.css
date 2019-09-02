@@ -1,0 +1,34 @@
+.book-list {
+  display: grid;
+  align-content: center;
+  align-items: center;
+
+  grid-column-gap: .5em;
+  grid-row-gap: .5em;
+  grid-template-columns: 5fr;
+  grid-template-rows: 1fr;
+}
+
+.book {
+  display: grid;
+  align-content: center;
+  align-items: center;
+
+  list-style-type: none;
+
+  grid-column-gap: .5em;
+  grid-row-gap: .5em;
+  grid-template-columns: repeat(2, 4fr) 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.new-book-form {
+  display: grid;
+  align-content: center;
+  align-items: center;
+
+  grid-column-gap: .5em;
+  grid-row-gap: .5em;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}

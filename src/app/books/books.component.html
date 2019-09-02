@@ -1,0 +1,30 @@
+<h2>Books</h2>
+
+<ul class="book-list">
+  <li class="book">
+    <h3>Author</h3>
+    <h3>Title</h3>
+    <h3>Size</h3>
+    <h3>Location</h3>
+  </li>
+  <li class="book" *ngFor="let book of books">
+    <span>{{ book.author }}</span>
+    <span>{{ book.title }}</span>
+    <span>{{ book.width }}</span>
+    <span>{{ book.location }}</span>
+  </li>
+</ul>
+
+<h2>Add book:</h2>
+<div class="new-book-form">
+  <label>Title:
+    <input #bookTitle type="text" />
+  </label>
+  <label>Author:
+    <input #bookAuthor type="text" />
+  </label>
+  <label>Width(cm):
+    <input #bookWidth type="number" maxlength="3" max="150" required />
+  </label>
+  <button (click)="add(bookAuthor.value, bookTitle.value, bookWidth.value); bookTitle.value=''">add</button>
+</div>
