@@ -1,0 +1,13 @@
+<h2>Add book:</h2>
+<div class="add-book-form">
+  <label>Title:
+    <input #bookTitle type="text" />
+  </label>
+  <label>Author:
+    <input #bookAuthor type="text" />
+  </label>
+  <label>Width(cm):
+    <input #bookWidth type="number" maxlength="3" max="150" required />
+  </label>
+  <button (click)="add(bookAuthor.value, bookTitle.value, bookWidth.value); bookTitle.value=''">add</button>
+</div>

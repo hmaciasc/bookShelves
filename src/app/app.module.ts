@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
 import { InMemoryDataService } from './in-memory-data.service';
+import { NewBookComponent } from './new-book/new-book.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      BooksComponent
+      BooksComponent,
+      NewBookComponent
    ],
    imports: [
       BrowserModule,

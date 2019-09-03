@@ -45,15 +45,4 @@ export class BooksComponent implements OnInit {
           this.books = books;
         });
   }
-
-  add(author, title: string, width: number): void {
-    title = title.trim();
-    author = author.trim();
-    if (!title || !author || !width || width > 150) { return; }
-    this.bookService.addBook({ author, title, width } as Book)
-      .subscribe(book => {
-        this.books.push(book);
-      });
-    this.getBooks();
-  }
 }

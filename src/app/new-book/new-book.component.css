@@ -1,0 +1,10 @@
+.add-book-form {
+  display: grid;
+  align-content: center;
+  align-items: center;
+
+  grid-column-gap: .5em;
+  grid-row-gap: .5em;
+  grid-template-columns: repeat(3, 2fr) 1fr;
+  grid-template-rows: 1fr;
+}
