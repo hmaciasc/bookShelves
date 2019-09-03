@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Book } from './book';
 
@@ -10,6 +10,8 @@ import { Book } from './book';
 export class BookService {
 
   private booksUrl = 'api/books';
+  private booksState = new BehaviorSubject([]);
+  currentState = this.booksState.asObservable();
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -36,7 +38,7 @@ export class BookService {
 
   addBook(book: Book): Observable<Book> {
     return this.http.post<Book>(this.booksUrl, book, this.httpOptions).pipe(
-      tap(data => console.log(data)),
+      tap(_ => this.getBooks().subscribe(books => this.booksState.next(books))),
       catchError(this.handleError<Book>('addBook'))
     );
   }

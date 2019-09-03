@@ -5,16 +5,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BookService } from './book.service';
 import { BooksComponent } from './books/books.component';
 import { InMemoryDataService } from './in-memory-data.service';
 import { NewBookComponent } from './new-book/new-book.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       BooksComponent,
-      NewBookComponent
+      NewBookComponent,
+      DashboardComponent
    ],
    imports: [
       BrowserModule,
@@ -25,7 +26,7 @@ import { NewBookComponent } from './new-book/new-book.component';
         InMemoryDataService, { dataEncapsulation: false }
       )
    ],
-   providers: [BookService],
+   providers: [],
    bootstrap: [
       AppComponent
    ]
