@@ -1,10 +1,99 @@
-.add-book-form {
-  display: grid;
-  align-content: center;
-  align-items: center;
+form {
+  max-width: 450px;
+  margin: 0 auto;
+}
 
-  grid-column-gap: .5em;
-  grid-row-gap: .5em;
-  grid-template-columns: repeat(3, 2fr) 1fr;
-  grid-template-rows: 1fr;
+form > div {
+  position: relative;
+
+  background: white;
+}
+
+form > div > label {
+  font-weight: bold;
+
+  position: absolute;
+  top: 18px;
+  left: 20px;
+
+  opacity: .3;
+}
+
+form > div > input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  margin: 4px 0;
+  padding: 10px;
+
+  border: 1px solid #E6E6E6;
+  border-radius: 3px;
+  background: #EEE;
+}
+
+form > div > input:focus {
+  outline: 0;
+  background: white;
+}
+
+form > div > input:focus + label {
+  opacity: 0;
+}
+
+form > div > input:valid {
+  border: 1px solid #66B36C;
+  border-radius: 3px;
+  outline: 0;
+}
+
+form > div > input:valid + label {
+  opacity: 0;
+}
+
+form > div > input:invalid:not(:focus):not(:placeholder-shown) + label {
+  opacity: 0;
+}
+
+form > div > input:invalid:focus:not(:placeholder-shown) ~ .requirements {
+  max-height: 200px;
+  padding: 0 30px 20px 50px;
+}
+
+form > div .requirements {
+  font-style: italic;
+
+  overflow: hidden;
+
+  max-height: 0;
+  padding: 0 30px 0 50px;
+
+  transition: .28s;
+
+  color: #999;
+  color: red;
+}
+
+form input[type='submit'] {
+  font-size: 1.2rem;
+
+  display: block;
+
+  width: 100%;
+  margin: 20px 0;
+
+  color: white;
+  border: 0;
+  background: #41D873;
+}
+
+form > div .ng-valid[required], .ng-valid.required, .ng-valid[touched] {
+  border-left: 5px solid #66B36C;
+}
+
+form > div .ng-invalid:not(form).ng-touched {
+  border-left: 5px solid pink;
+}
+
+input[type='submit'] {
+  padding: 10px;
 }

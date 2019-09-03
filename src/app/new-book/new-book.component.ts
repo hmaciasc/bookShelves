@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../book';
 import { BookService } from '../book.service';
 
@@ -11,14 +12,34 @@ import { BookService } from '../book.service';
 export class NewBookComponent implements OnInit {
 
   books: Book[];
+  book: Book;
+  bookForm: FormGroup;
 
   constructor(
     private bookService: BookService
   ) { }
 
   ngOnInit() {
+    this.bookForm = new FormGroup({
+      'author': new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)
+      ]),
+      'title': new FormControl('', [
+        Validators.required,
+        Validators.minLength(1)
+      ]),
+      'width': new FormControl("", [
+        Validators.required,
+        Validators.max(150)
+      ])
+    });
     this.bookService.currentState.subscribe(books => this.books = books);
   }
+
+  get author() { return this.bookForm.get('author'); }
+  get title() { return this.bookForm.get('title'); }
+  get width() { return this.bookForm.get('width'); }
 
   getBooks(): void {
     this.bookService.getBooks().subscribe(books => this.books = books);

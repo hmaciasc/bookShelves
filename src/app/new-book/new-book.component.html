@@ -1,13 +1,36 @@
-<h2>Add book:</h2>
-<div class="add-book-form">
-  <label>Author:
-    <input #bookAuthor type="text" />
-  </label>
-  <label>Title:
-    <input #bookTitle type="text" />
-  </label>
-  <label>Width(cm):
-    <input #bookWidth type="number" maxlength="3" max="150" required />
-  </label>
-  <button (click)="add(bookAuthor.value, bookTitle.value, bookWidth.value)">add</button>
-</div>
+<form [formGroup]="bookForm" class="add-book-form">
+  <div class="input-wrapper">
+    <input #bookAuthor type="text" required placeholder=" " name="author" formControlName="author" />
+    <label for="bookAuthor">Author:</label>
+    <div *ngIf="author.invalid && (author.dirty || author.touched)" class="requirements">
+      <div *ngIf="author.errors.required">
+        Author is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="input-wrapper">
+    <input #bookTitle type="text" required placeholder=" " name="title" formControlName="title" />
+    <label for="bookTitle">Title:</label>
+    <div *ngIf="title.invalid && (title.dirty || title.touched)" class="requirements">
+      <div *ngIf="title.errors.required">
+        Title is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="input-wrapper">
+    <input #bookWidth type="number" required placeholder=" " name="width" formControlName="width" maxlength="3" max="150" />
+    <label for="bookWidth">Width(cm):</label>
+    <div *ngIf="width.invalid && (width.dirty || width.touched)" class="requirements">
+      <div *ngIf="width.errors.required">
+        Width is required.
+      </div>
+      <div *ngIf="width.errors.max">
+        Max is 150.
+      </div>
+    </div>
+  </div>
+
+  <input type="submit" (click)="add(bookAuthor.value, bookTitle.value, bookWidth.value)" value="Add book" />
+</form>

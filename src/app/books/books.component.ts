@@ -24,7 +24,7 @@ export class BooksComponent implements OnInit {
       let shelf = 1;
       let rack = 1;
       let position = 0;
-      let leftSpace = 100;
+      let leftSpace = 150;
       books.forEach(book => {
         let bookFits: boolean = (leftSpace - book.width) > 0;
         if (!bookFits) {
