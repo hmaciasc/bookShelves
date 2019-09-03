@@ -8,18 +8,17 @@ import { BookService } from '../book.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+
   books: Book[];
 
-  constructor(private bookService: BookService) {
-  }
+  constructor(private bookService: BookService) { }
 
   ngOnInit() {
     this.getBooks();
   }
 
   getBooks(): void {
-    this.bookService.getBooks()
-        .subscribe(books => {
+    this.bookService.getBooks().subscribe(books => {
           books.sort((a,b) => (a.width < b.width) ? 1 : ((b.width < a.width) ? -1 : 0));
 
           let shelf = 1;
@@ -42,6 +41,7 @@ export class BooksComponent implements OnInit {
             }
             book.location = [shelf, rack, position];
           });
+          console.log(books);
           this.books = books;
         });
   }
