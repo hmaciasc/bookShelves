@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../book';
 import { BookService } from '../book.service';
+import { Shelf } from '../shelf';
 
 @Component({
   selector: 'app-books',
@@ -10,8 +11,11 @@ import { BookService } from '../book.service';
 export class BooksComponent implements OnInit {
 
   books: Book[];
+  shelves: Shelf[];
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService) {
+    this.shelves = [new Shelf, new Shelf, new Shelf];
+  }
 
   ngOnInit() {
     this.bookService.currentState.subscribe(_ => this.getBooks());
@@ -19,27 +23,20 @@ export class BooksComponent implements OnInit {
 
   getBooks(): void {
     this.bookService.getBooks().subscribe(books => {
-      books.sort((a,b) => (a.width < b.width) ? 1 : ((b.width < a.width) ? -1 : 0));
-
-      let shelf = 1;
-      let rack = 1;
-      let position = 0;
-      let leftSpace = 150;
       books.forEach(book => {
-        let bookFits: boolean = (leftSpace - book.width) > 0;
-        if (!bookFits) {
-          rack++;
-          leftSpace = 150;
-          position = 1;
-        } else {
-          position++;
-          leftSpace -= book.width;
+        for (let i = 0; i < this.shelves.length; i++) {
+          for (let j = 0; j < this.shelves[i].rackSpace.length; j++) {
+            let bookFits: boolean = (this.shelves[i].rackSpace[j] - book.width) > 0;
+            if (!bookFits) {
+              continue;
+            } else {
+              book.location = [i+1, j+1, this.shelves[i].rackPosition[j]];
+              this.shelves[i].rackPosition[j]++;
+              this.shelves[i].rackSpace[j] -= book.width;
+            }
+            return book;
+          }
         }
-        if (rack > 5) {
-          rack = 1;
-          shelf++;
-        }
-        book.location = [shelf, rack, position];
       });
       this.books = books;
     });

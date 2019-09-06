@@ -1,0 +1,20 @@
+<div id="search-component">
+  <h4><label for="search-box">Book Search</label></h4>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li>
+      <p>Author</p>
+      <p>Title</p>
+      <p>Size</p>
+      <p>Location</p>
+    </li>
+    <li *ngFor="let book of books$ | async">
+      <span>{{ book.author }}</span>
+      <span>{{ book.title }}</span>
+      <span>{{ book.width }}</span>
+      <span>{{ book.location }}</span>
+    </li>
+  </ul>
+</div>

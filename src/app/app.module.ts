@@ -10,13 +10,15 @@ import { BooksComponent } from './books/books.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InMemoryDataService } from './in-memory-data.service';
 import { NewBookComponent } from './new-book/new-book.component';
+import { SearchBookComponent } from './search-book/search-book.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       BooksComponent,
       NewBookComponent,
-      DashboardComponent
+      DashboardComponent,
+      SearchBookComponent
    ],
    imports: [
       BrowserModule,
